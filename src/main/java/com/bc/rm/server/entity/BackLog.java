@@ -9,7 +9,9 @@ import com.bc.rm.server.util.CommonUtil;
  */
 public class BackLog {
     private String id;
+    private String epicId;
     private String moduleId;
+    private String moduleName;
 
     /**
      * 事项类别
@@ -55,8 +57,17 @@ public class BackLog {
         return id;
     }
 
+
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getEpicId() {
+        return epicId;
+    }
+
+    public void setEpicId(String epicId) {
+        this.epicId = epicId;
     }
 
     public String getModuleId() {
@@ -65,6 +76,14 @@ public class BackLog {
 
     public void setModuleId(String moduleId) {
         this.moduleId = moduleId;
+    }
+
+    public String getModuleName() {
+        return moduleName;
+    }
+
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
     }
 
     public String getType() {

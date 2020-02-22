@@ -6,6 +6,7 @@ import com.bc.rm.server.service.BackLogService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 待办事项业务实现类
@@ -25,5 +26,9 @@ public class BackLogServiceImpl implements BackLogService {
     @Override
     public void addBackLog(BackLog backLog) {
         backLogMapper.addBackLog(backLog);
+    }
+
+    public List<BackLog> getAllBackLogList(){
+        return backLogMapper.getAllBackLogList();
     }
 }

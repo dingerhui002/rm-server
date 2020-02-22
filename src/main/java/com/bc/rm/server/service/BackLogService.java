@@ -2,6 +2,8 @@ package com.bc.rm.server.service;
 
 import com.bc.rm.server.entity.BackLog;
 
+import java.util.List;
+
 /**
  * 待办事项业务接口
  *
@@ -15,4 +17,6 @@ public interface BackLogService {
      * @param backLog 待办事项
      */
     void addBackLog(BackLog backLog);
+
+    List<BackLog> getAllBackLogList();
 }

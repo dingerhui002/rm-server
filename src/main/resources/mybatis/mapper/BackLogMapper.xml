@@ -2,6 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bc.rm.server.mapper.BackLogMapper">
 
+    <resultMap id="BackLog" type="com.bc.rm.server.entity.BackLog">
+        <id column="backlog_id" property="id" jdbcType="VARCHAR"/>
+        <result column="backlog_epic_id" property="epicId" jdbcType="VARCHAR"/>
+        <result column="backlog_module_id" property="moduleId" jdbcType="VARCHAR"/>
+        <result column="module_name" property="moduleName" jdbcType="VARCHAR"/>
+        <result column="backlog_type" property="type" jdbcType="VARCHAR"/>
+        <result column="backlog_status" property="status" jdbcType="VARCHAR"/>
+        <result column="backlog_title" property="title" jdbcType="VARCHAR"/>
+        <result column="backlog_deadline" property="deadLine" jdbcType="VARCHAR"/>
+        <result column="backlog_create_time" property="createTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
     <insert id="addBackLog" parameterType="com.bc.rm.server.entity.BackLog">
         insert into t_backlog
         (
@@ -25,4 +37,8 @@
         )
     </insert>
 
+    <select id="getAllBackLogList" resultMap="BackLog">
+        select b.*, m.module_name from t_backlog b
+          left join t_module m on b.backlog_module_id = m.module_id
+    </select>
 </mapper>

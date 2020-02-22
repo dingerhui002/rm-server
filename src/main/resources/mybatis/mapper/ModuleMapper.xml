@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bc.rm.server.mapper.ModuleMapper">
+
+    <insert id="addModule" parameterType="com.bc.rm.server.entity.Module">
+        insert into t_module
+        (
+            module_id,
+            module_name,
+            module_desc,
+            module_create_time
+        )
+        values
+        (
+            #{id},
+            #{name},
+            #{desc},
+            now()
+        )
+    </insert>
+
+</mapper>

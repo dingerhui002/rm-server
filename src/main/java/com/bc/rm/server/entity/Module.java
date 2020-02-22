@@ -3,6 +3,11 @@ package com.bc.rm.server.entity;
 
 import com.bc.rm.server.util.CommonUtil;
 
+/**
+ * 模块
+ *
+ * @author zhou
+ */
 public class Module {
     private String id;
     private String name;

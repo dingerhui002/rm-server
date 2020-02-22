@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bc.rm.server.mapper.BackLogMapper">
+
+    <insert id="addBackLog" parameterType="com.bc.rm.server.entity.BackLog">
+        insert into t_backlog
+        (
+            backlog_id,
+            backlog_module_id,
+            backlog_type,
+            backlog_status,
+            backlog_title,
+            backlog_deadline,
+            backlog_create_time
+        )
+        values
+        (
+            #{id},
+            #{moduleId},
+            #{type},
+            #{status},
+            #{title},
+            #{deadLine},
+            now()
+        )
+    </insert>
+
+</mapper>

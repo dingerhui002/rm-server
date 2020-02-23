@@ -3,6 +3,7 @@ package com.bc.rm.server.service;
 import com.bc.rm.server.entity.BackLog;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 待办事项业务接口
@@ -19,4 +20,8 @@ public interface BackLogService {
     void addBackLog(BackLog backLog);
 
     List<BackLog> getAllBackLogList();
+
+    List<BackLog> getFinishedBackLogListByEpicId(Map<String, String> paramMap);
+
+    List<BackLog> getUnFinishedBackLogListByEpicId(Map<String, String> paramMap);
 }

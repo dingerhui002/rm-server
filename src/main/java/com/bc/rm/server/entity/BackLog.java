@@ -35,7 +35,7 @@ public class BackLog {
      * 9:跟进中
      * 10:已关闭
      */
-    private String status;
+    private String statusId;
     private String title;
     private String deadLine;
     private String createTime;
@@ -44,11 +44,11 @@ public class BackLog {
 
     }
 
-    public BackLog(String moduleId, String type, String status, String title, String deadLine) {
+    public BackLog(String moduleId, String type, String statusId, String title, String deadLine) {
         this.id = CommonUtil.generateId();
         this.moduleId = moduleId;
         this.type = type;
-        this.status = status;
+        this.statusId = statusId;
         this.title = title;
         this.deadLine = deadLine;
     }
@@ -94,12 +94,12 @@ public class BackLog {
         this.type = type;
     }
 
-    public String getStatus() {
-        return status;
+    public String getStatusId() {
+        return statusId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatusId(String statusId) {
+        this.statusId = statusId;
     }
 
     public String getTitle() {

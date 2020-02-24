@@ -11,5 +11,10 @@ import java.util.List;
  */
 public interface EpicMapper {
 
+    /**
+     * 获取战略列表
+     *
+     * @return 战略列表
+     */
     List<Epic> getAllEpicList();
 }

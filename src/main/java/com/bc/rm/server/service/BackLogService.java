@@ -19,9 +19,19 @@ public interface BackLogService {
      */
     void addBackLog(BackLog backLog);
 
-    List<BackLog> getAllBackLogList();
-
+    /**
+     * 获取已经结束的待办事项列表
+     *
+     * @param paramMap 参数map
+     * @return 已经结束的待办事项列表
+     */
     List<BackLog> getFinishedBackLogListByEpicId(Map<String, String> paramMap);
 
+    /**
+     * 获取未结束的待办事项列表
+     *
+     * @param paramMap 参数map
+     * @return 未结束的待办事项列表
+     */
     List<BackLog> getUnFinishedBackLogListByEpicId(Map<String, String> paramMap);
 }

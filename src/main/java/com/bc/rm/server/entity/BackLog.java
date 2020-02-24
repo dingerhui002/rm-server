@@ -23,19 +23,10 @@ public class BackLog {
     // 后期可以做成工作流
     /**
      * 事项状态
-     * 0:新建
-     * 1:进行中
-     * 2:已解决
-     * 3:测试中
-     * 4:已拒绝
-     * 5:待讨论
-     * 6:待确认
-     * 7:待安排
-     * 8:测试OK
-     * 9:跟进中
-     * 10:已关闭
      */
     private String statusId;
+
+    private String statusName;
     private String title;
     private String deadLine;
     private String createTime;
@@ -100,6 +91,14 @@ public class BackLog {
 
     public void setStatusId(String statusId) {
         this.statusId = statusId;
+    }
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
     }
 
     public String getTitle() {

@@ -43,7 +43,7 @@ public class ReportController {
 
     /**
      * 生成报表(版本v1)
-     *
+     * @param finishStatusName 结束状态名,用于区分待办事项是否已经结束
      * @return ResponseEntity
      */
     @ApiOperation(value = "生成报表(版本:v1)", notes = "生成报表(版本:v1)")
@@ -172,6 +172,6 @@ public class ReportController {
 
         // 待办事项状态
         XSSFCell contentCell4 = contentRow.createCell(3);
-        contentCell4.setCellValue(backLog.getStatusId());
+        contentCell4.setCellValue(backLog.getStatusName());
     }
 }

@@ -31,28 +31,25 @@ public class BackLogServiceImpl implements BackLogService {
         backLogMapper.addBackLog(backLog);
     }
 
-    @Override
-    public List<BackLog> getAllBackLogList() {
-        return backLogMapper.getAllBackLogList();
-    }
-
+    /**
+     * 获取已经结束的待办事项列表
+     *
+     * @param paramMap 参数map
+     * @return 已经结束的待办事项列表
+     */
     @Override
     public List<BackLog> getFinishedBackLogListByEpicId(Map<String, String> paramMap) {
-//        Map<String, String> paramMap = new HashMap<>();
-//        paramMap.put("epicId", epicId);
-//        // TODO
-//        // 后面status可以做成流程化配置
-//        paramMap.put("finishStatus", Constant.FINISH_STATUS);
         return backLogMapper.getFinishedBackLogListByEpicId(paramMap);
     }
 
+    /**
+     * 获取未结束的待办事项列表
+     *
+     * @param paramMap 参数map
+     * @return 未结束的待办事项列表
+     */
     @Override
     public List<BackLog> getUnFinishedBackLogListByEpicId(Map<String, String> paramMap) {
-//        Map<String, String> paramMap = new HashMap<>();
-//        paramMap.put("epicId", epicId);
-//        // TODO
-//        // 后面status可以做成流程化配置
-//        paramMap.put("finishStatus", Constant.FINISH_STATUS);
         return backLogMapper.getUnFinishedBackLogListByEpicId(paramMap);
     }
 

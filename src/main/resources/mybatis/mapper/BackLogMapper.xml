@@ -9,6 +9,7 @@
         <result column="module_name" property="moduleName" jdbcType="VARCHAR"/>
         <result column="backlog_type" property="type" jdbcType="VARCHAR"/>
         <result column="backlog_status_id" property="statusId" jdbcType="VARCHAR"/>
+        <result column="status_name" property="statusName" jdbcType="VARCHAR"/>
         <result column="backlog_title" property="title" jdbcType="VARCHAR"/>
         <result column="backlog_deadline" property="deadLine" jdbcType="VARCHAR"/>
         <result column="backlog_create_time" property="createTime" jdbcType="VARCHAR"/>
@@ -37,14 +38,13 @@
         )
     </insert>
 
-    <select id="getAllBackLogList" resultMap="BackLog">
-        select b.*, m.module_name from t_backlog b
-          left join t_module m on b.backlog_module_id = m.module_id
-    </select>
-
     <select id="getUnFinishedBackLogListByEpicId" resultMap="BackLog">
         <![CDATA[
-        select b.*, m.module_name from t_backlog b
+
+        select b.*,
+               m.module_name,
+               s.status_name
+          from t_backlog b
           left join t_module m on b.backlog_module_id = m.module_id
           left join t_status s on b.backlog_status_id = s.status_id
             where b.backlog_epic_id = #{epicId}
@@ -53,7 +53,10 @@
     </select>
 
     <select id="getFinishedBackLogListByEpicId" resultMap="BackLog">
-        select b.*, m.module_name from t_backlog b
+        select b.*,
+               m.module_name,
+               s.status_name
+          from t_backlog b
           left join t_module m on b.backlog_module_id = m.module_id
           left join t_status s on b.backlog_status_id = s.status_id
             where b.backlog_epic_id = #{epicId}

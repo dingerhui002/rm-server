@@ -1,5 +1,10 @@
 package com.bc.rm.server.entity;
 
+/**
+ * 战略
+ *
+ * @author zhou
+ */
 public class Epic {
     private String id;
     private String title;

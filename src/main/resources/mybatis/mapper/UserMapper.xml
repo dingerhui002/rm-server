@@ -10,8 +10,12 @@
         <result column="user_last_login_time" property="lastLoginTime" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="getUserList" resultMap="User">
+    <select id="getUserListByParams" resultMap="User">
         select *
           from t_user
+          where 1 = 1
+          <if test="name != null and name != ''">
+            and user_name like "%"#{name}"%"
+          </if>
     </select>
 </mapper>

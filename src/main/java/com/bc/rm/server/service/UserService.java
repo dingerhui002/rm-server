@@ -12,9 +12,10 @@ public interface UserService {
     /**
      * 获取用户分页列表
      *
+     * @param name     用户名
      * @param pageNum  当前分页
      * @param pageSize 每个分页大小
      * @return 用户分页列表
      */
-    PageInfo<User> getUserListByPageInfo(int pageNum, int pageSize);
+    PageInfo<User> getUserListByPageInfo(String name, int pageNum, int pageSize);
 }

@@ -29,10 +29,11 @@ public class UserController {
     @ApiOperation(value = "获取用户列表", notes = "获取用户列表")
     @GetMapping(value = "")
     public ResponseEntity<PageInfo<User>> getUserList(
+            @RequestParam(required = false) String name,
             @RequestParam Integer page,
             @RequestParam Integer limit) {
-        logger.info("page: " + page + ", limit:" + limit);
-        PageInfo<User> pageInfo = userService.getUserListByPageInfo(page, limit);
+        logger.info("name:" + name + ", page: " + page + ", limit:" + limit);
+        PageInfo<User> pageInfo = userService.getUserListByPageInfo(name, page, limit);
         return new ResponseEntity<>(pageInfo, HttpStatus.OK);
     }
 }

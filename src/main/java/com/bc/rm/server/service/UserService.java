@@ -9,6 +9,14 @@ import com.github.pagehelper.PageInfo;
  * @author zhou
  */
 public interface UserService {
+
+    /**
+     * 新增用户
+     *
+     * @param user 用户
+     */
+    void addUser(User user);
+
     /**
      * 获取用户分页列表
      *

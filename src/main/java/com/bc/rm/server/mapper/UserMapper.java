@@ -13,6 +13,13 @@ import java.util.Map;
 public interface UserMapper {
 
     /**
+     * 新增用户
+     *
+     * @param user 用户
+     */
+    void addUser(User user);
+
+    /**
      * 获取用户列表
      *
      * @param paramMap 参数map

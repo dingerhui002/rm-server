@@ -23,6 +23,16 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     /**
+     * 新增用户
+     *
+     * @param user 用户
+     */
+    @Override
+    public void addUser(User user) {
+        userMapper.addUser(user);
+    }
+
+    /**
      * 获取用户分页列表
      *
      * @param name     用户名

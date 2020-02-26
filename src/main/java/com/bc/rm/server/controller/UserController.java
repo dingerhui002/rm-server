@@ -36,4 +36,17 @@ public class UserController {
         PageInfo<User> pageInfo = userService.getUserListByPageInfo(name, page, limit);
         return new ResponseEntity<>(pageInfo, HttpStatus.OK);
     }
+
+    @ApiOperation(value = "创建用户", notes = "创建用户")
+    @PostMapping(value = "")
+    public ResponseEntity<User> addUser(
+            @RequestParam String name,
+            @RequestParam String phone,
+            @RequestParam String mail,
+            @RequestParam(required = false) String desc) {
+        logger.info("name: " + name + ", phone: " + phone + ", mail: " + mail + ", desc: " + desc);
+        User user = new User(name, phone, mail, desc);
+        userService.addUser(user);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 }

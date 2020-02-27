@@ -38,16 +38,26 @@
 
     <select id="getUserListByParams" resultMap="User">
         select *
-          from t_user
-            where 1 = 1
-            <if test="name != null and name != ''">
-                and user_name like "%"#{name}"%"
-            </if>
-            order by user_create_time desc
+        from t_user
+        where 1 = 1
+        <if test="name != null and name != ''">
+            and user_name like "%"#{name}"%"
+        </if>
+        order by user_create_time desc
     </select>
 
     <delete id="deleteUser" parameterType="String">
         delete from t_user
           where user_id = #{userId}
     </delete>
+
+    <update id="updateUser" parameterType="com.bc.rm.server.entity.User">
+        update t_user
+        set
+        <if test="desc != null and desc !=''">
+            user_desc = #{desc},
+        </if>
+        user_status = #{status}
+        where user_id = #{id}
+    </update>
 </mapper>

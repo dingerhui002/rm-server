@@ -33,4 +33,11 @@ public interface UserService {
      * @param userId 用户ID
      */
     void deleteUser(String userId);
+
+    /**
+     * 修改用户
+     *
+     * @param user 用户
+     */
+    void updateUser(User user);
 }

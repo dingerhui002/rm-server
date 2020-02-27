@@ -61,4 +61,14 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(String userId) {
         userMapper.deleteUser(userId);
     }
+
+    /**
+     * 修改用户
+     *
+     * @param user 用户
+     */
+    @Override
+    public void updateUser(User user) {
+        userMapper.updateUser(user);
+    }
 }

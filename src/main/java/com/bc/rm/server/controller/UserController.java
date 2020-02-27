@@ -73,4 +73,27 @@ public class UserController {
         }
         return responseEntity;
     }
+
+    /**
+     * 编辑用户
+     *
+     * @param userId 用户ID
+     * @param status 用户状态
+     * @param desc   用户描述
+     * @return ResponseEntity<String>
+     */
+    @ApiOperation(value = "编辑用户", notes = "编辑用户")
+    @PutMapping(value = "/{userId}")
+    public ResponseEntity<String> updateUser(
+            @PathVariable String userId,
+            @RequestParam String status,
+            @RequestParam(required = false) String desc) {
+        logger.info("[updateUser] userId: " + userId + ", status: " + status + ", desc:" + desc);
+        User user = new User();
+        user.setId(userId);
+        user.setStatus(status);
+        user.setDesc(desc);
+        userService.updateUser(user);
+        return new ResponseEntity<>("", HttpStatus.OK);
+    }
 }

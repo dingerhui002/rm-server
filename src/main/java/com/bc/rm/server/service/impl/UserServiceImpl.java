@@ -51,4 +51,14 @@ public class UserServiceImpl implements UserService {
         PageInfo<User> pageInfo = new PageInfo<>(userList);
         return pageInfo;
     }
+
+    /**
+     * 删除用户
+     *
+     * @param userId 用户ID
+     */
+    @Override
+    public void deleteUser(String userId) {
+        userMapper.deleteUser(userId);
+    }
 }

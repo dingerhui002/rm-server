@@ -1,6 +1,7 @@
 package com.bc.rm.server.controller;
 
 import com.bc.rm.server.entity.User;
+import com.bc.rm.server.enums.ResponseMsg;
 import com.bc.rm.server.service.UserService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiOperation;
@@ -48,5 +49,28 @@ public class UserController {
         User user = new User(name, phone, mail, desc);
         userService.addUser(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    /**
+     * 删除用户
+     *
+     * @param userId 用户ID
+     * @return ResponseEntity<String>
+     */
+    @ApiOperation(value = "删除用户", notes = "删除用户")
+    @DeleteMapping(value = "/{userId}")
+    public ResponseEntity<String> deleteUser(@PathVariable String userId) {
+        logger.info("[deleteUser] userId: " + userId);
+        ResponseEntity<String> responseEntity;
+        try {
+            userService.deleteUser(userId);
+            responseEntity = new ResponseEntity<>(ResponseMsg.DELETE_USER_SUCCESS.getResponseCode(),
+                    HttpStatus.OK);
+        } catch (Exception e) {
+            logger.error("deleteUser error. errorMsg: " + e.getMessage());
+            responseEntity = new ResponseEntity<>(ResponseMsg.DELETE_USER_ERROR.getResponseCode(),
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
     }
 }

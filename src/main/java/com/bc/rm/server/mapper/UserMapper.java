@@ -26,4 +26,11 @@ public interface UserMapper {
      * @return 用户列表
      */
     List<User> getUserListByParams(Map<String, String> paramMap);
+
+    /**
+     * 删除用户
+     *
+     * @param userId 用户ID
+     */
+    void deleteUser(String userId);
 }

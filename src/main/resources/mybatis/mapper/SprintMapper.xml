@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bc.rm.server.mapper.SprintMapper">
+
+    <resultMap id="Sprint" type="com.bc.rm.server.entity.Sprint">
+        <id column="sprint_id" property="id" jdbcType="VARCHAR"/>
+        <result column="sprint_name" property="name" jdbcType="VARCHAR"/>
+        <result column="sprint_desc" property="desc" jdbcType="VARCHAR"/>
+        <result column="sprint_begin_date" property="beginDate" jdbcType="VARCHAR"/>
+        <result column="sprint_end_date" property="endDate" jdbcType="VARCHAR"/>
+        <result column="sprint_create_time" property="createTime" jdbcType="VARCHAR"/>
+        <result column="sprint_update_time" property="updateTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getSprintList" resultMap="Sprint">
+        select *
+          from t_sprint
+            order by sprint_create_time desc
+    </select>
+</mapper>

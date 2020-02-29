@@ -31,4 +31,11 @@ public interface SprintService {
      * @param sprint
      */
     void updateSprint(Sprint sprint);
+
+    /**
+     * 删除迭代
+     *
+     * @param sprintId 迭代ID
+     */
+    void deleteSprint(String sprintId);
 }

@@ -55,4 +55,14 @@ public class SprintServiceImpl implements SprintService {
     public void updateSprint(Sprint sprint) {
         sprintMapper.updateSprint(sprint);
     }
+
+    /**
+     * 删除迭代
+     *
+     * @param sprintId 迭代ID
+     */
+    @Override
+    public void deleteSprint(String sprintId) {
+        sprintMapper.deleteSprint(sprintId);
+    }
 }

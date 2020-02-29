@@ -59,4 +59,9 @@
         sprint_update_time = now()
         where sprint_id = #{id}
     </update>
+
+    <delete id="deleteSprint" parameterType="String">
+        delete from t_sprint
+          where sprint_id = #{sprintId}
+    </delete>
 </mapper>

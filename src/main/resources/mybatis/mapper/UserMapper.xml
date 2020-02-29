@@ -46,11 +46,6 @@
         order by user_create_time desc
     </select>
 
-    <delete id="deleteUser" parameterType="String">
-        delete from t_user
-          where user_id = #{userId}
-    </delete>
-
     <update id="updateUser" parameterType="com.bc.rm.server.entity.User">
         update t_user
         set
@@ -60,4 +55,9 @@
         user_status = #{status}
         where user_id = #{id}
     </update>
+
+    <delete id="deleteUser" parameterType="String">
+        delete from t_user
+        where user_id = #{userId}
+    </delete>
 </mapper>

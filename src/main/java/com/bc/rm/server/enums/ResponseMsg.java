@@ -16,7 +16,10 @@ public enum ResponseMsg {
     DELETE_USER_ERROR("DELETE_USER_ERROR", "删除用户失败"),
 
     UPDATE_SPRINT_SUCCESS("UPDATE_SPRINT_SUCCESS", "编辑迭代成功"),
-    UPDATE_SPRINT_ERROR("UPDATE_SPRINT_ERROR", "编辑迭代失败"),;
+    UPDATE_SPRINT_ERROR("UPDATE_SPRINT_ERROR", "编辑迭代失败"),
+
+    DELETE_SPRINT_SUCCESS("DELETE_SPRINT_SUCCESS", "删除迭代成功"),
+    DELETE_SPRINT_ERROR("DELETE_SPRINT_ERROR", "删除迭代失败"),;
 
     ResponseMsg(String responseCode, String responseMessage) {
         this.responseCode = responseCode;

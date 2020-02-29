@@ -93,4 +93,27 @@ public class SprintController {
         }
         return responseEntity;
     }
+
+    /**
+     * 删除迭代
+     *
+     * @param sprintId 迭代ID
+     * @return ResponseEntity<String>
+     */
+    @ApiOperation(value = "删除迭代", notes = "删除迭代")
+    @DeleteMapping(value = "/{sprintId}")
+    public ResponseEntity<String> deleteSprint(@PathVariable String sprintId) {
+        logger.info("[deleteSprint] sprintId: " + sprintId);
+        ResponseEntity<String> responseEntity;
+        try {
+            sprintService.deleteSprint(sprintId);
+            responseEntity = new ResponseEntity<>(ResponseMsg.DELETE_SPRINT_SUCCESS.getResponseCode(),
+                    HttpStatus.OK);
+        } catch (Exception e) {
+            logger.error("deleteSprint error. errorMsg: " + e.getMessage());
+            responseEntity = new ResponseEntity<>(ResponseMsg.DELETE_SPRINT_ERROR.getResponseCode(),
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
 }

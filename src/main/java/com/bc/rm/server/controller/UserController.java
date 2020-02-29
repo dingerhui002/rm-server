@@ -69,29 +69,6 @@ public class UserController {
     }
 
     /**
-     * 删除用户
-     *
-     * @param userId 用户ID
-     * @return ResponseEntity<String>
-     */
-    @ApiOperation(value = "删除用户", notes = "删除用户")
-    @DeleteMapping(value = "/{userId}")
-    public ResponseEntity<String> deleteUser(@PathVariable String userId) {
-        logger.info("[deleteUser] userId: " + userId);
-        ResponseEntity<String> responseEntity;
-        try {
-            userService.deleteUser(userId);
-            responseEntity = new ResponseEntity<>(ResponseMsg.DELETE_USER_SUCCESS.getResponseCode(),
-                    HttpStatus.OK);
-        } catch (Exception e) {
-            logger.error("deleteUser error. errorMsg: " + e.getMessage());
-            responseEntity = new ResponseEntity<>(ResponseMsg.DELETE_USER_ERROR.getResponseCode(),
-                    HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return responseEntity;
-    }
-
-    /**
      * 编辑用户
      *
      * @param userId 用户ID
@@ -118,6 +95,29 @@ public class UserController {
         } catch (Exception e) {
             logger.error("updateUser error. errorMsg: " + e.getMessage());
             responseEntity = new ResponseEntity<>(ResponseMsg.UPDATE_USER_ERROR.getResponseCode(),
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+
+    /**
+     * 删除用户
+     *
+     * @param userId 用户ID
+     * @return ResponseEntity<String>
+     */
+    @ApiOperation(value = "删除用户", notes = "删除用户")
+    @DeleteMapping(value = "/{userId}")
+    public ResponseEntity<String> deleteUser(@PathVariable String userId) {
+        logger.info("[deleteUser] userId: " + userId);
+        ResponseEntity<String> responseEntity;
+        try {
+            userService.deleteUser(userId);
+            responseEntity = new ResponseEntity<>(ResponseMsg.DELETE_USER_SUCCESS.getResponseCode(),
+                    HttpStatus.OK);
+        } catch (Exception e) {
+            logger.error("deleteUser error. errorMsg: " + e.getMessage());
+            responseEntity = new ResponseEntity<>(ResponseMsg.DELETE_USER_ERROR.getResponseCode(),
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;

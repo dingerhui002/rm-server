@@ -28,16 +28,16 @@ public interface UserService {
     PageInfo<User> getUserListByPageInfo(String name, int pageNum, int pageSize);
 
     /**
-     * 删除用户
-     *
-     * @param userId 用户ID
-     */
-    void deleteUser(String userId);
-
-    /**
      * 修改用户
      *
      * @param user 用户
      */
     void updateUser(User user);
+
+    /**
+     * 删除用户
+     *
+     * @param userId 用户ID
+     */
+    void deleteUser(String userId);
 }

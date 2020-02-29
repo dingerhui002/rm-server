@@ -27,7 +27,14 @@ public interface SprintMapper {
     /**
      * 修改迭代
      *
-     * @param sprint
+     * @param sprint 迭代
      */
     void updateSprint(Sprint sprint);
+
+    /**
+     * 删除迭代
+     *
+     * @param userId 迭代ID
+     */
+    void deleteSprint(String userId);
 }

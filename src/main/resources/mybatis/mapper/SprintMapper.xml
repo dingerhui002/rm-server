@@ -40,4 +40,23 @@
             now()
         )
     </insert>
+
+    <update id="updateSprint" parameterType="com.bc.rm.server.entity.Sprint">
+        update t_sprint
+        set
+        <if test="name != null and name !=''">
+            sprint_name = #{name},
+        </if>
+        <if test="desc != null and desc !=''">
+            sprint_desc = #{name},
+        </if>
+        <if test="beginDate != null and beginDate !=''">
+            sprint_begin_date = #{beginDate},
+        </if>
+        <if test="endDate != null and endDate !=''">
+            sprint_end_date = #{endDate},
+        </if>
+        sprint_update_time = now()
+        where sprint_id = #{id}
+    </update>
 </mapper>

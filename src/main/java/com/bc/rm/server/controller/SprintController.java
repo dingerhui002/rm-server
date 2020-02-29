@@ -2,6 +2,7 @@ package com.bc.rm.server.controller;
 
 import com.bc.rm.server.entity.Sprint;
 import com.bc.rm.server.entity.User;
+import com.bc.rm.server.enums.ResponseMsg;
 import com.bc.rm.server.service.SprintService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiOperation;
@@ -54,6 +55,41 @@ public class SprintController {
         } catch (Exception e) {
             logger.error("addSprint error. errorMsg: " + e.getMessage());
             responseEntity = new ResponseEntity<>(new Sprint(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+
+    /**
+     * 编辑迭代
+     *
+     * @param sprintId  迭代ID
+     * @param name      名称
+     * @param desc      描述
+     * @param beginDate 开始日期
+     * @param endDate   结束日期
+     * @return ResponseEntity<String>
+     */
+    @ApiOperation(value = "编辑迭代", notes = "编辑迭代")
+    @PutMapping(value = "/{sprintId}")
+    public ResponseEntity<String> updateSprint(
+            @PathVariable String sprintId,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String desc,
+            @RequestParam(required = false) String beginDate,
+            @RequestParam(required = false) String endDate) {
+        logger.info("[updateSprint] sprintId: " + sprintId + ", name: " + name
+                + ", desc: " + desc + ", beginDate: " + beginDate + ", endDate: " + endDate);
+        ResponseEntity<String> responseEntity;
+        try {
+            Sprint sprint = new Sprint(name, desc, beginDate, endDate);
+            sprint.setId(sprintId);
+            sprintService.updateSprint(sprint);
+            responseEntity = new ResponseEntity<>(ResponseMsg.UPDATE_SPRINT_SUCCESS.getResponseCode(),
+                    HttpStatus.OK);
+        } catch (Exception e) {
+            logger.error("updateSprint error. errorMsg: " + e.getMessage());
+            responseEntity = new ResponseEntity<>(ResponseMsg.UPDATE_SPRINT_ERROR.getResponseCode(),
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;
     }

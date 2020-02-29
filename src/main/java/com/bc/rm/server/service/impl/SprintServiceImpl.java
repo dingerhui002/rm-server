@@ -45,4 +45,14 @@ public class SprintServiceImpl implements SprintService {
     public void addSprint(Sprint sprint) {
         sprintMapper.addSprint(sprint);
     }
+
+    /**
+     * 修改迭代
+     *
+     * @param sprint
+     */
+    @Override
+    public void updateSprint(Sprint sprint) {
+        sprintMapper.updateSprint(sprint);
+    }
 }

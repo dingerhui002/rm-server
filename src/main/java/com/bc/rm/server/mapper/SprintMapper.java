@@ -23,4 +23,11 @@ public interface SprintMapper {
      * @param sprint 迭代
      */
     void addSprint(Sprint sprint);
+
+    /**
+     * 修改迭代
+     *
+     * @param sprint
+     */
+    void updateSprint(Sprint sprint);
 }

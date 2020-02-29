@@ -17,4 +17,27 @@
           from t_sprint
             order by sprint_create_time desc
     </select>
+
+    <insert id="addSprint" parameterType="com.bc.rm.server.entity.Sprint">
+        insert into t_sprint
+        (
+            sprint_id,
+            sprint_name,
+            sprint_desc,
+            sprint_begin_date,
+            sprint_end_date,
+            sprint_create_time,
+            sprint_update_time
+        )
+        values
+        (
+            #{id},
+            #{name},
+            #{desc},
+            #{beginDate},
+            #{endDate},
+            now(),
+            now()
+        )
+    </insert>
 </mapper>

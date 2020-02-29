@@ -17,4 +17,11 @@ public interface SprintService {
      * @return 迭代分页列表
      */
     PageInfo<Sprint> getSprintListByPageInfo(int pageNum, int pageSize);
+
+    /**
+     * 新增迭代
+     *
+     * @param sprint 迭代
+     */
+    void addSprint(Sprint sprint);
 }

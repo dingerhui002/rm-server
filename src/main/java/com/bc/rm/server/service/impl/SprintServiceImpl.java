@@ -35,4 +35,14 @@ public class SprintServiceImpl implements SprintService {
         PageInfo<Sprint> pageInfo = new PageInfo<>(sprintList);
         return pageInfo;
     }
+
+    /**
+     * 新增迭代
+     *
+     * @param sprint 迭代
+     */
+    @Override
+    public void addSprint(Sprint sprint) {
+        sprintMapper.addSprint(sprint);
+    }
 }

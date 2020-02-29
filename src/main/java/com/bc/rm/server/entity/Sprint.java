@@ -1,5 +1,7 @@
 package com.bc.rm.server.entity;
 
+import com.bc.rm.server.util.CommonUtil;
+
 /**
  * 迭代
  *
@@ -13,6 +15,18 @@ public class Sprint {
     private String endDate;
     private String createTime;
     private String updateTime;
+
+    public Sprint() {
+
+    }
+
+    public Sprint(String name, String desc, String beginDate, String endDate) {
+        this.id = CommonUtil.generateId();
+        this.name = name;
+        this.desc = desc;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+    }
 
     public String getId() {
         return id;

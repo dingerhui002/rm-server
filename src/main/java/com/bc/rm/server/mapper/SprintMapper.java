@@ -16,4 +16,11 @@ public interface SprintMapper {
      * @return 用户列表
      */
     List<Sprint> getSprintList();
+
+    /**
+     * 新增迭代
+     *
+     * @param sprint 迭代
+     */
+    void addSprint(Sprint sprint);
 }

@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bc.rm.server.mapper.ModuleMapper">
 
+    <resultMap id="Module" type="com.bc.rm.server.entity.Module">
+        <id column="module_id" property="id" jdbcType="VARCHAR"/>
+        <result column="module_name" property="name" jdbcType="VARCHAR"/>
+        <result column="module_desc" property="desc" jdbcType="VARCHAR"/>
+        <result column="module_create_time" property="createTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
     <insert id="addModule" parameterType="com.bc.rm.server.entity.Module">
         insert into t_module
         (
@@ -19,4 +26,9 @@
         )
     </insert>
 
+    <select id="getModuleList" resultMap="Module">
+        select *
+        from t_module
+        order by module_create_time desc
+    </select>
 </mapper>

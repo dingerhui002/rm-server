@@ -3,6 +3,8 @@ package com.bc.rm.server.service;
 import com.bc.rm.server.entity.Sprint;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
+
 /**
  * 迭代
  *
@@ -17,6 +19,13 @@ public interface SprintService {
      * @return 迭代分页列表
      */
     PageInfo<Sprint> getSprintListByPageInfo(int pageNum, int pageSize);
+
+    /**
+     * 获取迭代列表
+     *
+     * @return 迭代列表
+     */
+    List<Sprint> getSprintList();
 
     /**
      * 新增迭代

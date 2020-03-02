@@ -37,6 +37,16 @@ public class SprintServiceImpl implements SprintService {
     }
 
     /**
+     * 获取迭代列表
+     *
+     * @return 迭代列表
+     */
+    @Override
+    public List<Sprint> getSprintList() {
+        return sprintMapper.getSprintList();
+    }
+
+    /**
      * 新增迭代
      *
      * @param sprint 迭代

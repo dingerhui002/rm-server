@@ -22,6 +22,13 @@ public interface UserMapper {
     /**
      * 获取用户列表
      *
+     * @return 用户列表
+     */
+    List<User> getUserList();
+
+    /**
+     * 获取用户列表
+     *
      * @param paramMap 参数map
      * @return 用户列表
      */

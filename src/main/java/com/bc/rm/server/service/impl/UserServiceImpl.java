@@ -1,5 +1,6 @@
 package com.bc.rm.server.service.impl;
 
+import com.bc.rm.server.cons.Constant;
 import com.bc.rm.server.entity.User;
 import com.bc.rm.server.mapper.UserMapper;
 import com.bc.rm.server.service.UserService;
@@ -32,6 +33,11 @@ public class UserServiceImpl implements UserService {
         userMapper.addUser(user);
     }
 
+    @Override
+    public List<User> getUserList() {
+        return userMapper.getUserList();
+    }
+
     /**
      * 获取用户分页列表
      *
@@ -44,7 +50,7 @@ public class UserServiceImpl implements UserService {
     public PageInfo<User> getUserListByPageInfo(String name, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
 
-        Map<String, String> paramMap = new HashMap<>();
+        Map<String, String> paramMap = new HashMap<>(Constant.DEFAULT_HASH_MAP_CAPACITY);
         paramMap.put("name", name);
 
         List<User> userList = userMapper.getUserListByParams(paramMap);

@@ -6,6 +6,7 @@ import com.bc.rm.server.service.ModuleService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 模块业务实现类
@@ -26,5 +27,15 @@ public class ModuleServiceImpl implements ModuleService {
     @Override
     public void addModule(Module module) {
         moduleMapper.addModule(module);
+    }
+
+    /**
+     * 获取模块列表
+     *
+     * @return 模块列表
+     */
+    @Override
+    public List<Module> getModuleList() {
+        return moduleMapper.getModuleList();
     }
 }

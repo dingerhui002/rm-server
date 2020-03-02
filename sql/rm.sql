@@ -22,11 +22,16 @@ DROP TABLE IF EXISTS `t_backlog`;
 
 CREATE TABLE `t_backlog` (
   `backlog_id` varchar(32) NOT NULL COMMENT '待办事项表主键',
-  `backlog_epic_id` varchar(32) DEFAULT NULL COMMENT '战略表主键',
   `backlog_module_id` varchar(32) DEFAULT NULL COMMENT '模块表主键',
+  `backlog_sprint_id` varchar(32) DEFAULT NULL COMMENT '迭代表主键',
   `backlog_type` varchar(1) DEFAULT NULL COMMENT '类型("0":story "1":bug)',
   `backlog_status_id` varchar(32) DEFAULT NULL COMMENT '状态表主键',
+  `backlog_current_user_id` varchar(32) DEFAULT NULL COMMENT '当前处理人ID(对应用户表主键)',
+  `backlog_current_user_name` varchar(200) DEFAULT NULL COMMENT '当前处理人名字(对应用户表user_name字段),此处为快照',
   `backlog_title` varchar(200) DEFAULT NULL COMMENT '标题',
+  `backlog_priority_order` int(5) DEFAULT NULL COMMENT '优先级顺序(目前存在1-10种优先级)',
+  `backlog_priority` varchar(2) DEFAULT NULL COMMENT '优先级 "0":"低" "1":"中" "2":"高"',
+  `backlog_importance` varchar(2) DEFAULT NULL COMMENT '重要程度 "0":"提示" "1":"一般" "2":"重要" "3":"关键"',
   `backlog_deadline` varchar(20) DEFAULT NULL COMMENT '截止时间',
   `backlog_create_time` varchar(20) DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`backlog_id`)
@@ -77,7 +82,6 @@ DROP TABLE IF EXISTS `t_status`;
 
 CREATE TABLE `t_status` (
   `status_id` varchar(32) NOT NULL COMMENT '状态表主键',
-  `status_epic_id` varchar(32) DEFAULT NULL COMMENT '战略表主键',
   `status_name` varchar(100) DEFAULT NULL COMMENT '状态名',
   `status_desc` varchar(200) DEFAULT NULL COMMENT '状态描述',
   `status_type` varchar(1) DEFAULT NULL COMMENT '"0":开始态 "1":进行态 "2":结束态',

@@ -1,9 +1,9 @@
 package com.bc.rm.server.controller;
 
 import com.bc.rm.server.cons.Constant;
-import com.bc.rm.server.entity.BackLog;
+import com.bc.rm.server.entity.Backlog;
 import com.bc.rm.server.entity.Epic;
-import com.bc.rm.server.service.BackLogService;
+import com.bc.rm.server.service.BacklogService;
 import com.bc.rm.server.service.EpicService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.ss.usermodel.Font;
@@ -39,7 +39,7 @@ public class ReportController {
     private EpicService epicService;
 
     @Resource
-    private BackLogService backLogService;
+    private BacklogService backlogService;
 
     /**
      * 生成报表(版本v1)
@@ -64,22 +64,22 @@ public class ReportController {
                 paramMap.put("finishStatusName", finishStatusName);
 
                 // 未完成
-                List<BackLog> unFinishedBackLogList = backLogService.getUnFinishedBackLogListByEpicId(paramMap);
+                List<Backlog> unFinishedBacklogList = backlogService.getUnFinishedBacklogListByEpicId(paramMap);
                 // 创建Sheet对象
                 XSSFSheet unFinishedSheet = createSheetAndTitleRowV1(workbook, epic, UNFINISH);
 
                 int unFinishedIndex = 1;
-                for (BackLog unFinishedBackLog : unFinishedBackLogList) {
-                    fillContentCellV1(unFinishedSheet, unFinishedBackLog, unFinishedIndex);
+                for (Backlog unFinishedBacklog : unFinishedBacklogList) {
+                    fillContentCellV1(unFinishedSheet, unFinishedBacklog, unFinishedIndex);
                     unFinishedIndex++;
                 }
 
                 // 已完成
-                List<BackLog> finishedBackLogList = backLogService.getFinishedBackLogListByEpicId(paramMap);
+                List<Backlog> finishedBacklogList = backlogService.getFinishedBacklogListByEpicId(paramMap);
                 XSSFSheet finishedSheet = createSheetAndTitleRowV1(workbook, epic, FINISH);
                 int finishedIndex = 1;
-                for (BackLog finishedBackLog : finishedBackLogList) {
-                    fillContentCellV1(finishedSheet, finishedBackLog, finishedIndex);
+                for (Backlog finishedBacklog : finishedBacklogList) {
+                    fillContentCellV1(finishedSheet, finishedBacklog, finishedIndex);
                     finishedIndex++;
                 }
 
@@ -110,14 +110,14 @@ public class ReportController {
 
         // 设置每一列的宽度
         int moduleNameWidth = 15;
-        int backLogDescWidth = 80;
-        int backLogDeadLineWidth = 15;
-        int backLogStatusWidth = 15;
+        int backlogDescWidth = 80;
+        int backlogDeadLineWidth = 15;
+        int backlogStatusWidth = 15;
 
         sheet.setColumnWidth(0, moduleNameWidth * 256);
-        sheet.setColumnWidth(1, backLogDescWidth * 256);
-        sheet.setColumnWidth(2, backLogDeadLineWidth * 256);
-        sheet.setColumnWidth(3, backLogStatusWidth * 256);
+        sheet.setColumnWidth(1, backlogDescWidth * 256);
+        sheet.setColumnWidth(2, backlogDeadLineWidth * 256);
+        sheet.setColumnWidth(3, backlogStatusWidth * 256);
         // 设置标题行
         XSSFRow titleRow = sheet.createRow(0);
 
@@ -155,24 +155,24 @@ public class ReportController {
         return sheet;
     }
 
-    private void fillContentCellV1(XSSFSheet sheet, BackLog backLog, int index) {
+    private void fillContentCellV1(XSSFSheet sheet, Backlog backlog, int index) {
         // 内容行
         XSSFRow contentRow = sheet.createRow(index);
 
         // 模块名
         XSSFCell contentCell1 = contentRow.createCell(0);
-        contentCell1.setCellValue(backLog.getModuleName());
+        contentCell1.setCellValue(backlog.getModuleName());
 
         // 待办事项描述
         XSSFCell contentCell2 = contentRow.createCell(1);
-        contentCell2.setCellValue(backLog.getTitle());
+        contentCell2.setCellValue(backlog.getTitle());
 
         // 待办事项预计结束时间
         XSSFCell contentCell3 = contentRow.createCell(2);
-        contentCell3.setCellValue(backLog.getDeadLine());
+        contentCell3.setCellValue(backlog.getDeadLine());
 
         // 待办事项状态
         XSSFCell contentCell4 = contentRow.createCell(3);
-        contentCell4.setCellValue(backLog.getStatusName());
+        contentCell4.setCellValue(backlog.getStatusName());
     }
 }

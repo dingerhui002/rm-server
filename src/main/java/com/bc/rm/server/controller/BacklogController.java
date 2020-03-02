@@ -1,7 +1,7 @@
 package com.bc.rm.server.controller;
 
-import com.bc.rm.server.entity.BackLog;
-import com.bc.rm.server.service.BackLogService;
+import com.bc.rm.server.entity.Backlog;
+import com.bc.rm.server.service.BacklogService;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,13 +20,13 @@ import javax.annotation.Resource;
  * @author zhou
  */
 @RestController
-@RequestMapping("/backLogs")
-public class BackLogController {
+@RequestMapping("/backlogs")
+public class BacklogController {
 
-    private static final Logger logger = LoggerFactory.getLogger(BackLogController.class);
+    private static final Logger logger = LoggerFactory.getLogger(BacklogController.class);
 
     @Resource
-    private BackLogService backLogService;
+    private BacklogService backlogService;
 
     /**
      * 新增待办事项
@@ -39,20 +39,25 @@ public class BackLogController {
      * @return ResponseEntity
      */
     @ApiOperation(value = "新增代办事项", notes = "新增代办事项")
-    @PostMapping(value = "/")
-    public ResponseEntity<String> addBackLog(
-            @RequestParam String moduleId,
-            @RequestParam(required = false, defaultValue = "0") String type,
-            @RequestParam String status,
+    @PostMapping(value = "")
+    public ResponseEntity<String> addBacklog(
             @RequestParam String title,
-            @RequestParam String deadLine) {
+            @RequestParam String statusId,
+            @RequestParam String currentUserId,
+            @RequestParam String moduleId,
+            @RequestParam String sprintId,
+            @RequestParam String priorityOrder,
+            @RequestParam String priority,
+            @RequestParam String importance,
+            @RequestParam(required = false) String deadLine) {
         ResponseEntity<String> responseEntity;
         try {
-            BackLog backLog = new BackLog(moduleId, type, status, title, deadLine);
-            backLogService.addBackLog(backLog);
+            Backlog backlog = new Backlog(title, statusId, currentUserId, moduleId, sprintId, priorityOrder, priority, importance, deadLine);
+            logger.info("[addBacklog], data: " + backlog);
+            backlogService.addBacklog(backlog);
             responseEntity = new ResponseEntity<>("", HttpStatus.OK);
         } catch (Exception e) {
-            logger.error("addBackLog error: " + e.getMessage());
+            logger.error("addBacklog error: " + e.getMessage());
             responseEntity = new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;

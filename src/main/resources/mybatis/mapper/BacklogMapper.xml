@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bc.rm.server.mapper.BackLogMapper">
+<mapper namespace="com.bc.rm.server.mapper.BacklogMapper">
 
-    <resultMap id="BackLog" type="com.bc.rm.server.entity.BackLog">
+    <resultMap id="Backlog" type="com.bc.rm.server.entity.Backlog">
         <id column="backlog_id" property="id" jdbcType="VARCHAR"/>
         <result column="backlog_epic_id" property="epicId" jdbcType="VARCHAR"/>
         <result column="backlog_module_id" property="moduleId" jdbcType="VARCHAR"/>
@@ -15,14 +15,19 @@
         <result column="backlog_create_time" property="createTime" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <insert id="addBackLog" parameterType="com.bc.rm.server.entity.BackLog">
+    <insert id="addBacklog" parameterType="com.bc.rm.server.entity.Backlog">
         insert into t_backlog
         (
             backlog_id,
             backlog_module_id,
+            backlog_sprint_id,
             backlog_type,
-            backlog_status,
+            backlog_status_id,
+            backlog_current_user_id,
             backlog_title,
+            backlog_priority_order,
+            backlog_priority,
+            backlog_importance,
             backlog_deadline,
             backlog_create_time
         )
@@ -30,15 +35,20 @@
         (
             #{id},
             #{moduleId},
+            #{sprintId},
             #{type},
-            #{status},
+            #{statusId},
+            #{currentUserId},
             #{title},
+            #{priorityOrder},
+            #{priority},
+            #{importance},
             #{deadLine},
             now()
         )
     </insert>
 
-    <select id="getUnFinishedBackLogListByEpicId" resultMap="BackLog">
+    <select id="getUnFinishedBacklogListByEpicId" resultMap="Backlog">
         <![CDATA[
 
         select b.*,
@@ -52,7 +62,7 @@
         ]]>
     </select>
 
-    <select id="getFinishedBackLogListByEpicId" resultMap="BackLog">
+    <select id="getFinishedBacklogListByEpicId" resultMap="Backlog">
         select b.*,
                m.module_name,
                s.status_name

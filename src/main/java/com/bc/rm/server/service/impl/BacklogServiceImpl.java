@@ -3,7 +3,10 @@ package com.bc.rm.server.service.impl;
 import com.bc.rm.server.entity.Backlog;
 import com.bc.rm.server.mapper.BacklogMapper;
 import com.bc.rm.server.service.BacklogService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -27,6 +30,37 @@ public class BacklogServiceImpl implements BacklogService {
     @Override
     public void addBacklog(Backlog backlog) {
         backlogMapper.addBacklog(backlog);
+    }
+
+    /**
+     * 获取待办事项分页列表
+     *
+     * @param pageNum  当前分页
+     * @param pageSize 每个分页大小
+     * @return 用户分页列表
+     */
+    @Override
+    public PageInfo<Backlog> getBacklogListByPageInfo(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Backlog> backlogList = backlogMapper.getBacklogList();
+        PageInfo<Backlog> pageInfo = new PageInfo<>(backlogList);
+        return pageInfo;
+    }
+
+    /**
+     * 根据ID获取待办事项
+     *
+     * @param backlogId 待办事项ID
+     * @return 待办事项
+     */
+    @Override
+    public Backlog getBacklogById(String backlogId) {
+        List<Backlog> backlogList = backlogMapper.getBacklogById(backlogId);
+        if (CollectionUtils.isEmpty(backlogList)) {
+            return new Backlog();
+        } else {
+            return backlogList.get(0);
+        }
     }
 
     /**

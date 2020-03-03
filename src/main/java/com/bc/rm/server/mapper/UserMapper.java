@@ -27,6 +27,14 @@ public interface UserMapper {
     List<User> getUserList();
 
     /**
+     * 根据用户ID获取用户
+     *
+     * @param userId 用户ID
+     * @return 用户
+     */
+    List<User> getUserByUserId(String userId);
+
+    /**
      * 获取用户列表
      *
      * @param paramMap 参数map

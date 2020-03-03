@@ -7,6 +7,7 @@ import com.bc.rm.server.service.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -33,9 +34,30 @@ public class UserServiceImpl implements UserService {
         userMapper.addUser(user);
     }
 
+    /**
+     * 获取用户列表
+     *
+     * @return 用户列表
+     */
     @Override
     public List<User> getUserList() {
         return userMapper.getUserList();
+    }
+
+    /**
+     * 根据用户ID获取用户
+     *
+     * @param userId 用户ID
+     * @return 用户
+     */
+    @Override
+    public User getUserByUserId(String userId) {
+        List<User> userList = userMapper.getUserList();
+        if (CollectionUtils.isEmpty(userList)) {
+            return new User();
+        } else {
+            return userList.get(0);
+        }
     }
 
     /**

@@ -20,6 +20,21 @@ public interface BacklogMapper {
     void addBacklog(Backlog backlog);
 
     /**
+     * 获取待办事项列表
+     *
+     * @return 待办事项列表
+     */
+    List<Backlog> getBacklogList();
+
+    /**
+     * 根据ID获取待办事项
+     *
+     * @param backlogId 待办事项ID
+     * @return 待办事项
+     */
+    List<Backlog> getBacklogById(String backlogId);
+
+    /**
      * 获取已经结束的待办事项列表
      *
      * @param paramMap 参数map

@@ -52,6 +52,11 @@
         order by user_create_time desc
     </select>
 
+    <select id="getUserByUserId" resultMap="User">
+        select *
+        from t_user
+        where user_id = #{userId}
+    </select>
 
     <update id="updateUser" parameterType="com.bc.rm.server.entity.User">
         update t_user

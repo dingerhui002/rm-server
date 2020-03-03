@@ -4,13 +4,22 @@
 
     <resultMap id="Backlog" type="com.bc.rm.server.entity.Backlog">
         <id column="backlog_id" property="id" jdbcType="VARCHAR"/>
-        <result column="backlog_epic_id" property="epicId" jdbcType="VARCHAR"/>
+        <result column="backlog_title" property="title" jdbcType="VARCHAR"/>
+
+        <result column="backlog_current_user_name" property="currentUserName" jdbcType="VARCHAR"/>
+
+        <result column="sprint_name" property="sprintName" jdbcType="VARCHAR"/>
+
         <result column="backlog_module_id" property="moduleId" jdbcType="VARCHAR"/>
         <result column="module_name" property="moduleName" jdbcType="VARCHAR"/>
         <result column="backlog_type" property="type" jdbcType="VARCHAR"/>
         <result column="backlog_status_id" property="statusId" jdbcType="VARCHAR"/>
         <result column="status_name" property="statusName" jdbcType="VARCHAR"/>
-        <result column="backlog_title" property="title" jdbcType="VARCHAR"/>
+
+        <result column="backlog_priority_order" property="priorityOrder" jdbcType="INTEGER"/>
+        <result column="backlog_priority" property="priority" jdbcType="VARCHAR"/>
+        <result column="backlog_importance" property="importance" jdbcType="VARCHAR"/>
+
         <result column="backlog_deadline" property="deadLine" jdbcType="VARCHAR"/>
         <result column="backlog_create_time" property="createTime" jdbcType="VARCHAR"/>
     </resultMap>
@@ -24,6 +33,7 @@
             backlog_type,
             backlog_status_id,
             backlog_current_user_id,
+            backlog_current_user_name,
             backlog_title,
             backlog_priority_order,
             backlog_priority,
@@ -39,6 +49,7 @@
             #{type},
             #{statusId},
             #{currentUserId},
+            #{currentUserName},
             #{title},
             #{priorityOrder},
             #{priority},
@@ -51,6 +62,7 @@
     <select id="getUnFinishedBacklogListByEpicId" resultMap="Backlog">
         <![CDATA[
 
+
         select b.*,
                m.module_name,
                s.status_name
@@ -59,6 +71,8 @@
           left join t_status s on b.backlog_status_id = s.status_id
             where b.backlog_epic_id = #{epicId}
               and s.status_name <> #{finishStatusName}
+
+
         ]]>
     </select>
 
@@ -73,4 +87,18 @@
               and s.status_name = #{finishStatusName}
     </select>
 
+    <select id="getBacklogList" resultMap="Backlog">
+        select b.*, sp.sprint_name, st.status_name
+          from t_backlog b
+          left join t_sprint sp on b.backlog_sprint_id = sp.sprint_id
+          left join t_status st on b.backlog_status_id = st.status_id
+    </select>
+
+    <select id="getBacklogById" resultMap="Backlog">
+        select b.*, sp.sprint_name, st.status_name
+        from t_backlog b
+        left join t_sprint sp on b.backlog_sprint_id = sp.sprint_id
+        left join t_status st on b.backlog_status_id = st.status_id
+        where b.backlog_id = #{backlogId}
+    </select>
 </mapper>

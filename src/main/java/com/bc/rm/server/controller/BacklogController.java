@@ -34,16 +34,21 @@ public class BacklogController {
     /**
      * 新增待办事项
      *
-     * @param moduleId 模块ID
-     * @param type     类型
-     * @param status   状态
-     * @param title    标题
-     * @param deadLine 预计结束时间
-     * @return ResponseEntity
+     * @param title         标题
+     * @param statusId      状态ID
+     * @param currentUserId 当前处理人ID
+     * @param moduleId      模块ID
+     * @param sprintId      迭代ID
+     * @param priorityOrder 优先级顺序
+     * @param priority      优先级
+     * @param importance    重要程度
+     * @param deadLine      截止日期(预期结束日期)
+     * @return ResponseEntity<Backlog>
      */
     @ApiOperation(value = "新增代办事项", notes = "新增代办事项")
     @PostMapping(value = "")
     public ResponseEntity<Backlog> addBacklog(
+            @RequestParam String type,
             @RequestParam String title,
             @RequestParam String statusId,
             @RequestParam String currentUserId,
@@ -55,7 +60,8 @@ public class BacklogController {
             @RequestParam(required = false) String deadLine) {
         ResponseEntity<Backlog> responseEntity;
         try {
-            Backlog backlog = new Backlog(title, statusId, currentUserId, moduleId, sprintId, priorityOrder, priority, importance, deadLine);
+            Backlog backlog = new Backlog(type, title, statusId, currentUserId, moduleId,
+                    sprintId, priorityOrder, priority, importance, deadLine);
             User currentUser = userService.getUserByUserId(currentUserId);
             backlog.setCurrentUserName(currentUser.getName());
             logger.info("[addBacklog], data: " + backlog);

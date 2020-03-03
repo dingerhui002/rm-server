@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User getUserByUserId(String userId) {
-        List<User> userList = userMapper.getUserList();
+        List<User> userList = userMapper.getUserByUserId(userId);
         if (CollectionUtils.isEmpty(userList)) {
             return new User();
         } else {

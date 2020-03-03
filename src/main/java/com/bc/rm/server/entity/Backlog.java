@@ -44,7 +44,8 @@ public class Backlog {
 
     }
 
-    public Backlog(String title,
+    public Backlog(String type,
+                   String title,
                    String statusId,
                    String currentUserId,
                    String moduleId,
@@ -54,6 +55,7 @@ public class Backlog {
                    String importance,
                    String deadLine) {
         this.id = CommonUtil.generateId();
+        this.type = type;
         this.title = title;
         this.statusId = statusId;
         this.currentUserId = currentUserId;

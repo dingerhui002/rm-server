@@ -1,5 +1,6 @@
 package com.bc.rm.server.controller;
 
+import com.bc.rm.server.cons.Constant;
 import com.bc.rm.server.entity.Backlog;
 import com.bc.rm.server.entity.User;
 import com.bc.rm.server.service.BacklogService;
@@ -42,7 +43,6 @@ public class BacklogController {
      * @param priorityOrder 优先级顺序
      * @param priority      优先级
      * @param importance    重要程度
-     * @param deadLine      截止日期(预期结束日期)
      * @return ResponseEntity<Backlog>
      */
     @ApiOperation(value = "新增代办事项", notes = "新增代办事项")
@@ -52,16 +52,18 @@ public class BacklogController {
             @RequestParam String title,
             @RequestParam String statusId,
             @RequestParam String currentUserId,
-            @RequestParam String moduleId,
-            @RequestParam String sprintId,
-            @RequestParam String priorityOrder,
-            @RequestParam String priority,
-            @RequestParam String importance,
-            @RequestParam(required = false) String deadLine) {
+            @RequestParam(required = false) String moduleId,
+            @RequestParam(required = false) String sprintId,
+            @RequestParam(required = false, defaultValue = Constant.IS_LINK_SPRINT_NO) String isLinkSprint,
+            @RequestParam(required = false) String beginDate,
+            @RequestParam(required = false) String endDate,
+            @RequestParam(required = false, defaultValue = "1") String priorityOrder,
+            @RequestParam(defaultValue = Constant.PRIORITY_MEDIUM) String priority,
+            @RequestParam(defaultValue = Constant.IMPORTANCE_COMMON) String importance) {
         ResponseEntity<Backlog> responseEntity;
         try {
             Backlog backlog = new Backlog(type, title, statusId, currentUserId, moduleId,
-                    sprintId, priorityOrder, priority, importance, deadLine);
+                    sprintId, isLinkSprint, beginDate, endDate, priorityOrder, priority, importance);
             User currentUser = userService.getUserByUserId(currentUserId);
             backlog.setCurrentUserName(currentUser.getName());
             logger.info("[addBacklog], data: " + backlog);

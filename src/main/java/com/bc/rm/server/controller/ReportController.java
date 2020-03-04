@@ -169,7 +169,7 @@ public class ReportController {
 
         // 待办事项预计结束时间
         XSSFCell contentCell3 = contentRow.createCell(2);
-        contentCell3.setCellValue(backlog.getDeadLine());
+        contentCell3.setCellValue(backlog.getEndDate());
 
         // 待办事项状态
         XSSFCell contentCell4 = contentRow.createCell(3);

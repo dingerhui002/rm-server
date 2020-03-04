@@ -20,7 +20,6 @@
         <result column="backlog_priority" property="priority" jdbcType="VARCHAR"/>
         <result column="backlog_importance" property="importance" jdbcType="VARCHAR"/>
 
-        <result column="backlog_deadline" property="deadLine" jdbcType="VARCHAR"/>
         <result column="backlog_create_time" property="createTime" jdbcType="VARCHAR"/>
     </resultMap>
 
@@ -30,6 +29,9 @@
             backlog_id,
             backlog_module_id,
             backlog_sprint_id,
+            backlog_link_sprint,
+            backlog_begin_date,
+            backlog_end_date,
             backlog_type,
             backlog_status_id,
             backlog_current_user_id,
@@ -38,7 +40,6 @@
             backlog_priority_order,
             backlog_priority,
             backlog_importance,
-            backlog_deadline,
             backlog_create_time
         )
         values
@@ -46,6 +47,9 @@
             #{id},
             #{moduleId},
             #{sprintId},
+            #{isLinkSprint},
+            #{beginDate},
+            #{endDate},
             #{type},
             #{statusId},
             #{currentUserId},
@@ -54,14 +58,12 @@
             #{priorityOrder},
             #{priority},
             #{importance},
-            #{deadLine},
             now()
         )
     </insert>
 
     <select id="getUnFinishedBacklogListByEpicId" resultMap="Backlog">
         <![CDATA[
-
 
         select b.*,
                m.module_name,
@@ -71,7 +73,6 @@
           left join t_status s on b.backlog_status_id = s.status_id
             where b.backlog_epic_id = #{epicId}
               and s.status_name <> #{finishStatusName}
-
 
         ]]>
     </select>
@@ -88,10 +89,11 @@
     </select>
 
     <select id="getBacklogList" resultMap="Backlog">
-        select b.*, sp.sprint_name, st.status_name
+        select b.*, sp.sprint_name, st.status_name, m.module_name
           from t_backlog b
           left join t_sprint sp on b.backlog_sprint_id = sp.sprint_id
           left join t_status st on b.backlog_status_id = st.status_id
+          left join t_module m on b.backlog_module_id = m.module_id
           order by b.backlog_create_time desc
     </select>
 

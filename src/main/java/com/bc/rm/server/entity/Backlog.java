@@ -27,6 +27,10 @@ public class Backlog {
     private String sprintId;
     private String sprintName;
 
+    private String isLinkSprint;
+    private String beginDate;
+    private String endDate;
+
     private String priorityOrder;
     private String priority;
     private String importance;
@@ -37,7 +41,6 @@ public class Backlog {
      */
     private String type;
 
-    private String deadLine;
     private String createTime;
 
     public Backlog() {
@@ -50,10 +53,12 @@ public class Backlog {
                    String currentUserId,
                    String moduleId,
                    String sprintId,
+                   String isLinkSprint,
+                   String beginDate,
+                   String endDate,
                    String priorityOrder,
                    String priority,
-                   String importance,
-                   String deadLine) {
+                   String importance) {
         this.id = CommonUtil.generateId();
         this.type = type;
         this.title = title;
@@ -61,10 +66,12 @@ public class Backlog {
         this.currentUserId = currentUserId;
         this.moduleId = moduleId;
         this.sprintId = sprintId;
+        this.isLinkSprint = isLinkSprint;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
         this.priorityOrder = priorityOrder;
         this.priority = priority;
         this.importance = importance;
-        this.deadLine = deadLine;
     }
 
     public String getId() {
@@ -147,6 +154,30 @@ public class Backlog {
         this.sprintName = sprintName;
     }
 
+    public String getIsLinkSprint() {
+        return isLinkSprint;
+    }
+
+    public void setIsLinkSprint(String isLinkSprint) {
+        this.isLinkSprint = isLinkSprint;
+    }
+
+    public String getBeginDate() {
+        return beginDate;
+    }
+
+    public void setBeginDate(String beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
     public String getPriorityOrder() {
         return priorityOrder;
     }
@@ -179,14 +210,6 @@ public class Backlog {
         this.type = type;
     }
 
-    public String getDeadLine() {
-        return deadLine;
-    }
-
-    public void setDeadLine(String deadLine) {
-        this.deadLine = deadLine;
-    }
-
     public String getCreateTime() {
         return createTime;
     }
@@ -208,11 +231,13 @@ public class Backlog {
                 ", moduleName='" + moduleName + '\'' +
                 ", sprintId='" + sprintId + '\'' +
                 ", sprintName='" + sprintName + '\'' +
+                ", isLinkSprint='" + isLinkSprint + '\'' +
+                ", beginDate='" + beginDate + '\'' +
+                ", endDate='" + endDate + '\'' +
                 ", priorityOrder='" + priorityOrder + '\'' +
                 ", priority='" + priority + '\'' +
                 ", importance='" + importance + '\'' +
                 ", type='" + type + '\'' +
-                ", deadLine='" + deadLine + '\'' +
                 ", createTime='" + createTime + '\'' +
                 '}';
     }

@@ -88,7 +88,7 @@ public class BacklogController {
     public ResponseEntity<PageInfo<Backlog>> getBacklogList(
             @RequestParam Integer page,
             @RequestParam Integer limit) {
-        logger.info("[getBacklogList] page: " + page + ", limit:" + limit);
+        logger.info("[getBacklogList] page: " + page + ", limit: " + limit);
         PageInfo<Backlog> pageInfo = backlogService.getBacklogListByPageInfo(page, limit);
         return new ResponseEntity<>(pageInfo, HttpStatus.OK);
     }

@@ -92,6 +92,7 @@
           from t_backlog b
           left join t_sprint sp on b.backlog_sprint_id = sp.sprint_id
           left join t_status st on b.backlog_status_id = st.status_id
+          order by b.backlog_create_time desc
     </select>
 
     <select id="getBacklogById" resultMap="Backlog">

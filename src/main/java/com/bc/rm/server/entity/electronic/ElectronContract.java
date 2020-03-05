@@ -1,6 +1,6 @@
 package com.bc.rm.server.entity.electronic;
 
-import com.bc.base.BaseEntity;
+import com.bc.rm.server.entity.base.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 

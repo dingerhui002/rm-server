@@ -1,6 +1,6 @@
 package com.bc.rm.server.msg;
 
-import com.bc.result.CodeMsg;
+import com.bc.rm.server.result.CodeMsg;
 
 /**
  * @program: wd-saas

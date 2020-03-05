@@ -2,7 +2,7 @@ package com.bc.rm.server.config;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bc.rm.server.entity.electronic.ElectronContractApi;
-import com.bc.rm.server.util.RedisUtil;
+import com.bc.rm.server.service.impl.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpHead;

@@ -1,8 +1,9 @@
-package com.bc.rm.server.util;
+package com.bc.rm.server.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.bc.rm.server.util.key.KeyPrefix;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author tangyifei
  */
+@Service
 public class RedisUtil {
 
     private RedisTemplate<String, Object> redisTemplate;

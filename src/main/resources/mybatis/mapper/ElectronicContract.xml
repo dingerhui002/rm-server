@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bc.rm.server.mapper.ElectronicContractMapper">
+
+    <!--************************************************其他模块的表的方法**********************************************-->
+    <!-- 查找用户-->
+    <select id="findByUserId" resultType="com.bc.rm.server.entity.user.AccountUser">
+        SELECT
+        id,name,idNumber,idType,phone,account_id as accountId,email
+        FROM
+        t_user
+        WHERE  id=#{userId}
+    </select>
+
+
+    <!-- 查找合同-->
+    <select id="findByContractId" resultType="com.bc.rm.server.entity.Contract">
+        SELECT
+        id,flow_id as flowId,title
+        FROM
+        t_contract
+        WHERE  id=#{contractId}
+    </select>
+
+
+    <!-- 更改用户垫子合同的第三方用户useId-->
+    <update id="updateUser" parameterType="com.bc.rm.server.entity.user.AccountUser">
+      UPDATE
+        t_user
+      SET
+        account_id = #{accountId}
+      WHERE
+        id = #{id}
+    </update>
+
+    <!-- 更改合同的垫子合同的第三方签署流程flowId-->
+    <update id="updateContract" parameterType="com.bc.rm.server.entity.Contract">
+      UPDATE
+        t_contract
+      SET
+        flow_id = #{flowId}
+      WHERE
+        id = #{id}
+    </update>
+    <!--************************************************为电子合同单独建的表的方法**********************************************-->
+    <insert id="insertFile" parameterType="com.bc.rm.server.entity.electronic.ElectronContractFile">
+        INSERT INTO t_order_electronic_contract_file
+        (
+        id,
+        uploadUrl,
+        file_id,
+        electronic_id,
+        creator_id,
+        modify_time,
+        create_time
+        )
+        VALUES
+        (
+        #{id},
+        #{uploadUrl},
+        #{fileId},
+        #{electronicId},
+        #{creatorId},
+        NOW(),
+        NOW()
+        )
+    </insert>
+
+
+</mapper>

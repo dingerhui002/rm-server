@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bc.rm.server.mapper.AccountSealMapper">
+
+    <resultMap id="sealMap" type="com.bc.rm.server.entity.electronic.AccountSeal">
+        <result property="id" column="id"></result>
+        <result property="createTime" column="create_time"></result>
+        <result property="accountId" column="account_id"></result>
+        <result property="status" column="status"></result>
+        <result property="defaultFlag" column="default_flag"></result>
+        <result property="sealId" column="seal_id"></result>
+        <result property="alias" column="seal_alias"></result>
+        <result property="color" column="seal_color"></result>
+        <result property="height" column="seal_height"></result>
+        <result property="width" column="seal_width"></result>
+        <result property="type" column="seal_type"></result>
+        <result property="url" column="seal_url"></result>
+        <result property="templateType" column="seal_template_type"></result>
+    </resultMap>
+
+    <select id="get" resultMap="sealMap">
+        select * from t_account_seal
+        where id = #{id}
+    </select>
+
+    <select id="listPage" parameterType="map" resultMap="sealMap">
+      select * from t_account_seal
+      where status = '0'
+      and account_id = #{accountId}
+      order by default_status asc,create_time desc
+   </select>
+
+    <insert id="insert" parameterType="com.bc.rm.server.entity.electronic.AccountSeal">
+        insert into t_account_seal
+        (id,
+        create_time,
+        account_id,
+        status,
+        default_flag,
+        seal_id,
+        seal_alias,
+        seal_color,
+        seal_height,
+        seal_width,
+        seal_type,
+        seal_url,
+        seal_template_type)
+        VALUES
+        (#{id},
+        now(),
+        #{accountId},
+        #{status},
+        #{defaultFlag},
+        #{sealId},
+        #{alias},
+        #{color},
+        #{height},
+        #{width},
+        #{type},
+        #{url},
+        #{templateType})
+    </insert>
+
+    <insert id="insertList" parameterType="list">
+        insert into t_account_seal
+        (id,
+        create_time,
+        account_id,
+        status,
+        default_flag,
+        seal_id,
+        seal_alias,
+        seal_color,
+        seal_height,
+        seal_width,
+        seal_type,
+        seal_url,
+        seal_template_type)
+        VALUES
+        <foreach collection="list" separator="," item="item">
+            (#{item.id},
+            now(),
+            #{item.accountId},
+            #{item.status},
+            #{item.defaultFlag},
+            #{item.sealId},
+            #{item.alias},
+            #{item.color},
+            #{item.height},
+            #{item.width},
+            #{item.type},
+            #{item.url},
+            #{item.templateType})
+        </foreach>
+    </insert>
+
+    <update id="updateSealDefault">
+        update t_account_seal
+        set default_flag = '0'
+        where id = #{accountSealId}
+    </update>
+
+    <update id="removeSealDefault">
+        update t_account_seal
+        set default_flag = '1'
+        where account_id = #{accountId}
+    </update>
+
+</mapper>
